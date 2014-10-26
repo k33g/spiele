@@ -1,2 +1,9 @@
 .idea/*
 node_modules/*
+data/db/local.0
+data/db/local.ns
+data/db/mongod.lock
+data/db/spiele-project.0
+data/db/spiele-project.ns
+data/db/journal/*
+

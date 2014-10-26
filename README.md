@@ -21,3 +21,6 @@
 - search "full text"
 - etc. ...
 
+##License
+
+**Spiele** is available under the terms of the [MIT-License](http://en.wikipedia.org/wiki/MIT_License#License_terms).
