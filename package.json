@@ -1,0 +1,13 @@
+{
+  "name": "spiele",
+  "description": "spiele",
+  "version": "0.0.0",
+  "author": "@k33g_org",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.0.2",
+    "express": "4.1.x",
+    "mongodb": "^2.0.4",
+    "traceur": "0.0.66"
+  }
+}

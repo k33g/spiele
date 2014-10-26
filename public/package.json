@@ -1,0 +1,9 @@
+{
+  "name": "skeleton",
+  "description": "skeleton",
+  "author": "@k33g_org",
+  "license": "MIT",
+  "dependencies": {
+    "traceur": "0.0.66"
+  }
+}
