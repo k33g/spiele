@@ -21,7 +21,6 @@ let humansList = new HumansList(humansCollection);
 
 let humanForm = new HumanForm(humansCollection, message);
 
-humansCollection.notifyObservers({event:"fetched"});
 humansCollection.fetch();
 
 
