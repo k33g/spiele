@@ -1,18 +1,15 @@
-class View {
+import Observable from './Observable';
 
-  constructor (options={}) {
+class View extends Observable {
+
+  constructor (options={}, observers = []) {
     Object.assign(this, options);
+
+    super(observers);
   }
 
   html (code) {
     this.element.innerHTML = code;
-  }
-
-  // transformer la vue en observer
-  listen (observable, callback) {
-    observable.addObserver(this);
-    // la vue devient un observer
-    this.update = callback;
   }
 
   show () {

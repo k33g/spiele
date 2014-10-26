@@ -17,6 +17,7 @@ class Title extends View {
 
     // display title
     this.render();
+
   }
 
   render () {

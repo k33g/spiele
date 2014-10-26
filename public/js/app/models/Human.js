@@ -6,6 +6,14 @@ class Human  extends Model {
     //super(fields);
     super(fields, "/humans");
   }
+
+  get _id () { return this.get("_id"); }
+
+  get firstName () { return this.get("firstName"); }
+  set firstName (value) { this.set("firstName", value); return this; }
+
+  get lastName () { return this.get("lastName"); }
+  set lastName (value) { this.set("lastName", value); return this; }
 }
 
 export default Human;

@@ -2,7 +2,7 @@ import Observable from './Observable';
 import Request from './Request';
 
 class Collection extends Observable {
-  // ajout de l'url
+
   constructor (model, url="/", models = [], observers = []) {
     this.model = model;
     this.models = models;

@@ -17,14 +17,14 @@ class HumanForm extends View {
     `;
   }
 
-
-
-  constructor (humansCollection) {
+  constructor (humansCollection, message) {
 
     super({
       collection: humansCollection,
       element: $q("#human-form")
     });
+
+    this.addObserver(message)
 
     // display form
     this.render();
@@ -35,6 +35,10 @@ class HumanForm extends View {
     this.lastName = this.element.find("#lastName");
 
     button.addEventListener("click", (event) => this.click(event), false);
+
+    this.element.addEventListener("keyup", (event) =>
+      this.notifyObservers({ event:"message", value:this.firstName.value + " " +this.lastName.value })
+    );
 
   }
 
@@ -48,7 +52,7 @@ class HumanForm extends View {
       lastName : this.lastName.value
     });
 
-    human.save().then((data)=>{
+    human.save().then((data) => {
 
       this.collection.fetch()
 
@@ -58,7 +62,6 @@ class HumanForm extends View {
     });
 
   }
-
 
   render () {
     this.html(this.template());
