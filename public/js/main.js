@@ -9,7 +9,9 @@ import HumanForm from 'js/app/views/HumanForm';
 
 
 //import $q from 'js/skeleton/selector';
-//import Request from 'js/skeleton/Request';
+import Request from 'js/skeleton/Request';
+
+window.Request = Request
 
 new Title("POC: ECMAScript 6 + MongoDB");
 
