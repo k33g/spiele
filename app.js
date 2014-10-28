@@ -22,7 +22,8 @@ SandboxRoutes(app);
 HumansRoutes(app, mongoDbHelper)
 
 
-mongoDbHelper.start(() => {
+mongoDbHelper.start((err) => {
+  if (err) console.log(err);
   app.listen(http_port);
   console.log("Listening on " + http_port);
 });

@@ -19,7 +19,7 @@ export default class MongoDbHelper {
   start (callback) {
     this.mongoClient.connect(this.url, (err, db) => {
       this.db = db;
-      callback(db)
+      callback(err, db)
     });
   }
 
