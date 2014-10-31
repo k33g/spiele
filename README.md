@@ -21,6 +21,7 @@
 - search "full text"
 - etc. ...
 - Try something with Hapi.js
+- sanitize
 
 ##License
 

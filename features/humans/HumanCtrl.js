@@ -2,8 +2,8 @@
  * Created by k33g_org on 26/10/14.
  */
 
-import Controller from '../core/Controller';
-import Human from '../models/Human';
+import Controller from '../../core/Controller';
+import Human from './Human';
 
 class HumanCtrl extends Controller {
 

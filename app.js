@@ -3,8 +3,9 @@ import http from 'http';
 import bodyParser from 'body-parser';
 import MongoDbHelper from './core/MongoDbHelper';
 
-import SandboxRoutes from './routes/SandboxRoutes';
-import HumansRoutes from './routes/HumansRoutes';
+import SandboxRoutes from './features/sandbox/SandboxRoutes';
+import HumansRoutes from './features/humans/HumansRoutes';
+import ContentsRoutes from './features/contents/ContentsRoutes';
 
 // Connection URL for MongoDb
 let url = 'mongodb://localhost:27017/spiele-project';

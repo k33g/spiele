@@ -1,63 +1,71 @@
 import Human from '../models/Human';
-
 import View from '../../skeleton/View';
-import $q from '../../skeleton/selector';
+import Observer from '../../skeleton/Observer';
+
 
 class HumanForm extends View {
 
-  template () {
-    return `
+  template () {return `
       <hr>
       <form>
-        <input id="firstName" placeholder="firstName"/>
-        <input id="lastName" placeholder="lastName"/>
+        <input class="firstName" placeholder="firstName"/>
+        <input class="lastName" placeholder="lastName"/>
+        <textarea rows="10" cols="50" class="history"></textarea>
         <button>add</button>
       </form>
       <hr>
-    `;
-  }
+  `;}
 
   constructor (humansCollection, message) {
 
     super({
       collection: humansCollection,
-      element: $q("#human-form")
+      selector: "human-form" // ref. to this.element
     });
 
-    this.addObserver(message)
+    new Observer({onMessage: (context) => {
+
+      if (context.event == "message") {
+        message.text = context.value;
+        message.render();
+      }
+
+    }}).observe(this)
 
     // display form
     this.render();
 
-    let button = this.element.find("button");
+    this.button = this.find("button");
+    this.firstName = this.find(".firstName");
+    this.lastName = this.find(".lastName");
+    this.history = this.find(".history")
 
-    this.firstName = this.element.find("#firstName");
-    this.lastName = this.element.find("#lastName");
+    this.button.on("click")((event) => this.click(event));
 
-    button.addEventListener("click", (event) => this.click(event), false);
-
-    this.element.addEventListener("keyup", (event) =>
-      this.notifyObservers({ event:"message", value:this.firstName.value + " " +this.lastName.value })
+    this.on("keyup")((event) =>
+      this.notifyObservers({
+        event:"message",
+        value:`${this.firstName.value} ${this.lastName.value}`
+      })
     );
-
   }
-
-
 
   click (event) {
     event.preventDefault();
 
     let human = new Human({
       firstName: this.firstName.value,
-      lastName : this.lastName.value
+      lastName : this.lastName.value,
+      history : this.history.value
     });
 
     human.save().then((data) => {
 
-      this.collection.fetch()
-
-      this.firstName.value = "";
-      this.lastName.value = "";
+      this.collection.fetch().then(() => {
+        this.firstName.value = "";
+        this.lastName.value = "";
+        this.history.value = "";
+      })
 
     });
 
@@ -70,3 +78,4 @@ class HumanForm extends View {
 }
 
 export default HumanForm;
+

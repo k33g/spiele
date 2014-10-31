@@ -8,6 +8,10 @@ import uuid from 'node-uuid';
  http://mongodb.github.io/node-mongodb-native/2.0/tutorials/crud_operations/
  */
 
+/*
+TODO: full search
+*/
+
 export default class MongoDbHelper {
 
   constructor (url) {

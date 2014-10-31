@@ -1,5 +1,4 @@
 import View from '../../skeleton/View';
-import $q from '../../skeleton/selector';
 
 class Message extends View {
 
@@ -7,28 +6,20 @@ class Message extends View {
     return `<h2 style="color:red;">${message}</h2>`;
   }
 
-  constructor (message) {
+  constructor (text) {
 
     super({
-      element: $q("#my-message")
+      selector: "my-message"
     });
 
-    this.message = message;
+    this.text = text;
 
     // display message
     this.render();
-
   }
 
   render () {
-    this.html(this.template(this.message));
-  }
-
-  update (context) {
-    if (context.event == "message") {
-      this.message = context.value;
-      this.render();
-    }
+    this.html(this.template(this.text));
   }
 
 }

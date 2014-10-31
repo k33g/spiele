@@ -1,4 +1,4 @@
-import Collection from '../core/Collection';
+import Collection from '../../core/Collection';
 import Human from './Human';
 
 class Humans extends Collection {

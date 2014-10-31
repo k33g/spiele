@@ -15,6 +15,12 @@ let q = (selector) => {
 
   nodes.find = q;
 
+  nodes.on = (eventName) => {
+    return (callBack) => {
+      nodes.addEventListener(eventName, (event) => callBack(event));
+    };
+  }
+
   return nodes;
 }
 

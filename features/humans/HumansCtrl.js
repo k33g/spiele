@@ -2,8 +2,8 @@
  * Created by k33g_org on 26/10/14.
  */
 
-import Controller from '../core/Controller';
-import Humans from '../models/Humans';
+import Controller from '../../core/Controller';
+import Humans from './Humans';
 
 class HumansCtrl extends Controller {
   constructor (mongoDbHelper, req, res) {

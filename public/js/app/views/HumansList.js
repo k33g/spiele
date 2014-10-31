@@ -1,48 +1,31 @@
-
 import View from '../../skeleton/View';
-import $q from '../../skeleton/selector';
+import Observer from '../../skeleton/Observer';
 
 class HumansList extends View {
 
-
-  oldTemplate (humans) {
-    return `
+  template (humans) {return `
       <ul>${
-      humans.models.map(
-        (human) => `<li>${human.id()} - ${human.get("firstName")}, ${human.get("lastName")}</li>`
+      humans.map(
+        (human) => `
+        <li>
+          <b>${human._id}</b> - ${human.firstName}, ${human.lastName} <a href="/#/humans/remove/${human._id}">Remove</a>
+        </li>
+        `
       ).join("")
       }</ul>
-    `;
-  }
-
-  template (humans) {
-    return `
-      <ul>${
-      humans.models.map(
-        (human) => `<li><b>${human._id}</b> - ${human.firstName}, ${human.lastName}</li>`
-      ).join("")
-      }</ul>
-    `;
-  }
+  `;}
 
   constructor (humansCollection) {
+    this.collection = humansCollection;
+    this.selector = "humans-list";
 
-    super({
-      collection: humansCollection,
-      element: $q("#humans-list")
-    });
+    super();
 
-    // display list when collection is loaded (when fetch is called)
-    humansCollection.addObserver(this)
+    new Observer({onMessage:(context) => {
+      context.event == "fetched" ? this.render() : null;
+    }}).observe(humansCollection)
 
   }
-  // i've got an update method I'm an observer too
-  update (context) {
-    if (context.event == "fetched") {
-      this.render();
-    }
-  }
-
 
   render () {
     this.html(this.template(this.collection));

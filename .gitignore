@@ -6,4 +6,5 @@ data/db/mongod.lock
 data/db/spiele-project.0
 data/db/spiele-project.ns
 data/db/journal/*
+sandbox/*
 

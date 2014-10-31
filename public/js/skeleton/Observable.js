@@ -23,6 +23,8 @@ class Observable {
     });
     return this;
   }
+
+  /*TODO: removeObserver etc. ...*/
 }
 
 export default Observable;

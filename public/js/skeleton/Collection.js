@@ -14,7 +14,6 @@ class Collection extends Observable {
     return JSON.stringify(this.models);
   }
 
-
   add (model) {
     this.models.push(model);
     this.notifyObservers({event: "added", model: model});
@@ -28,6 +27,11 @@ class Collection extends Observable {
   filter (callbck) {
     return this.models.filter(callbck)
   }
+
+  map (callbck) {
+    return this.models.map(callbck)
+  }
+
 
   size () { return this.models.length; }
 
@@ -51,7 +55,7 @@ class Collection extends Observable {
     });
 
   }
-
+  /* TODO: add search() facilities */
 
 }
 

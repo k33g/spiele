@@ -1,7 +1,8 @@
 
 class Router {
 
-  constructor () {
+  constructor (options={}) {
+    Object.assign(this, options);
     this.routes = new Map();
     this.routes.set("/",(args)=>{});
   }
@@ -11,28 +12,28 @@ class Router {
     return this;
   }
 
-  match (uri) { //utilisation du hash
+  match (uri) { //using hash
 
-    // on retraite l'uri: enlever les #/
+    // remove #/ from uri
     uri = uri.replace("#\/","");
 
-    // http://localhost:3006/#/hello/bob/morane
-    // /hello/bob/morane
+    // ie: http://localhost:3006/#/hello/bob/morane
+    // becomes /hello/bob/morane
 
-    // splitter uri avec "/" et ne garder que les éléments non vides
+    // to split uri with "/" and keep only no empty items
     let uriParts = uri.split("/").filter((part)=>part.length>0);
 
-    // ["hello", "bob", "morane"]
+    // ie: ["hello", "bob", "morane"]
 
-    // clé à chercher -> "hello"
+    // key to search -> "hello"
     let route = uriParts[0];
-    // paramètres à passer à la méthode -> ["bob", "morane"]
+    // parameters to pass to the method -> ["bob", "morane"]
     let params = uriParts.slice(1);
 
-    // récupérer la méthode
+    // het method
     let method = this.routes.get(route);
 
-    // exécuter la méthode
+    // run method
     if (method) {
       method(params)
     } else {
@@ -41,11 +42,11 @@ class Router {
   }
 
   listen () {
-    // une fois le routeur en mode écoute
-    // lui faire vérifier une 1ère fois l'url pour déterminer quoi faire
+    // when router is listening
+    // check url at first time (first load) (useful to bookmark functionality)
     this.match(window.location.hash);
 
-    /* s'abonner à onpopstate */
+    /* subscribe to onpopstate */
     window.onpopstate = (event) => {
       this.match(window.location.hash);
     };

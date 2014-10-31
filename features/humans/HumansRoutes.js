@@ -1,8 +1,8 @@
 /**
  * Created by k33g_org on 28/10/14.
  */
-import HumanCtrl from '../controllers/HumanCtrl';
-import HumansCtrl from '../controllers/HumansCtrl';
+import HumanCtrl from './HumanCtrl';
+import HumansCtrl from './HumansCtrl';
 
 export default (app, mongoDbHelper) => {
 
