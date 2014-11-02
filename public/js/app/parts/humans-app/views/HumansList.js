@@ -1,5 +1,5 @@
-import View from '../../skeleton/View';
-import Observer from '../../skeleton/Observer';
+import View from '../../../../skeleton/View';
+import Observer from '../../../../skeleton/Observer';
 
 class HumansList extends View {
 
@@ -16,10 +16,11 @@ class HumansList extends View {
   `;}
 
   constructor (humansCollection) {
-    this.collection = humansCollection;
-    this.selector = "humans-list";
 
-    super();
+    super({
+      selector : "humans-list",
+      collection : humansCollection
+    });
 
     new Observer({onMessage:(context) => {
       context.event == "fetched" ? this.render() : null;

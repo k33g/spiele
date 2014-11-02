@@ -1,10 +1,9 @@
-import Model from '../../skeleton/Model';
+import Model from '../../../../skeleton/Model';
 
 class Human  extends Model {
-  constructor (fields = { firstName:"John", lastName:"Doe"  }) {
-    //superclass's constructor invocation
-    //super(fields);
-    super(fields, "/humans");
+
+  constructor (fields = { firstName:"John", lastName:"Doe"  }) { // always initialize a model like that
+    super({fields: fields, url: "/humans"});
   }
 
   get _id () { return this.get("_id"); }

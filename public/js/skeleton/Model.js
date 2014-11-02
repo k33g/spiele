@@ -3,12 +3,9 @@ import Request from './Request';
 
 class Model extends Observable {
 
-  constructor (fields={}, url="/", observers=[]) {
-
-    this.fields = fields;
-    this.url = url;
-
-    super(observers);
+  constructor (options = {fields: {}, url: "/", observers: []}) {
+    Object.assign(this, options);
+    super(this.observers);
   }
 
   get (fieldName) {

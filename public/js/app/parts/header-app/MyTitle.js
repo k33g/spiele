@@ -1,4 +1,4 @@
-import View from '../../skeleton/View';
+import View from '../../../skeleton/View';
 
 class MyTitle extends View {
 
@@ -9,10 +9,9 @@ class MyTitle extends View {
   constructor (title) {
 
     super({
-      selector: "my-title"
+      selector: "my-title",
+      title : title
     });
-
-    this.title = title;
 
     // display title
     this.render();

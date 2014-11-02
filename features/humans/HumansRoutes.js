@@ -12,7 +12,7 @@ export default (app, mongoDbHelper) => {
     humansCtrl.getAll();
   });
 
-  /* new Request("/humans/find").post({firstName:"Bob"}).then((data) => { console.log(data); }) */
+  /* new Request("/humans-app/find").post({firstName:"Bob"}).then((data) => { console.log(data); }) */
   app.post("/humans/find", (req, res) => {
     let humansCtrl = new HumansCtrl(mongoDbHelper, req, res);
     humansCtrl.find();

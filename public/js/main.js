@@ -1,65 +1,47 @@
-import Human from 'js/app/models/Human';
-import Humans from 'js/app/models/Humans';
-
-import MyTitle from 'js/app/views/MyTitle';
-import Message from 'js/app/views/Message';
-
-import HumansList from 'js/app/views/HumansList';
-import HumanForm from 'js/app/views/HumanForm';
-import $q from 'js/skeleton/selector';
-import Request from 'js/skeleton/Request';
+/* --- main ---*/
 import Router from 'js/skeleton/Router';
-
 import Observer from 'js/skeleton/Observer';
-
-window.$q = $q;
-window.Request = Request;
+import Part from 'js/skeleton/Part';
 
 
-new MyTitle("POC: ECMAScript 6 + MongoDB");
+let router = new Router();
+router
+  .add("/", (args) => { console.log("=== Home ==="); })
+  .add("hello", (args) => { console.log(args); });
 
-let message = new Message("...");
+router.listen();
 
-let humansCollection = new Humans();
+let helloPart = new Part({url:"js/app/parts/hello/hello", selector:"hello"});
+let headerAppPart = new Part({url:"js/app/parts/header-app/header-app", selector:"header-app"});
 
-let humansList = new HumansList(humansCollection);
-
-let humanForm = new HumanForm(humansCollection, message);
-
-humansCollection.fetch();
-
-let router = new Router({
-  removeHuman: (id) => {
-    new Human({_id:id}).delete().then(() => { humansCollection.fetch(); });
-
-    /* change url after delete */
-  }
+let humansAppPart = new Part({
+  url: "js/app/parts/humans-app/humans-app",
+  selector: "humans-app",
+  observers: [
+    new Observer({ onMessage: (context) => {
+      console.log("From Observer of humansAppPart", context)
+    }})
+  ]
 });
 
-router
-  .add("humans", (args) => {
-    switch(args[0]) {
-      case "remove":
-        router.removeHuman(args[1]);
-        break;
-      case "list":
-        break;
-      default:
-      //foo
-    }
-  });
 
-router.listen()
+helloPart.load({message:"Hello"}).then(() => {
+
+});
+
+headerAppPart.load({message:"Header"}).then(() => {
+
+});
+
+/* Router injection */
+humansAppPart.load({router: router}).then(() => {
+  console.log("humansAppPart loaded")
+});
 
 
-/*
-new Observer({onMessage: (context) => {
 
-  console.log(context)
-  $q("message").innerHTML = JSON.stringify(context);
 
-}}).observe(humansCollection)
-*/
+
 
 
 

@@ -1,4 +1,4 @@
-import View from '../../skeleton/View';
+import View from '../../../../skeleton/View';
 
 class Message extends View {
 

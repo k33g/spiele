@@ -3,11 +3,9 @@ import Request from './Request';
 
 class Collection extends Observable {
 
-  constructor (model, url="/", models = [], observers = []) {
-    this.model = model;
-    this.models = models;
-    this.url = url;
-    super(observers);
+  constructor (options = {model: {}, url: "/", models: [], observers: []}) {
+    Object.assign(this, options);
+    super(this.observers);
   }
 
   toString () {
@@ -43,7 +41,7 @@ class Collection extends Observable {
       this.models = []; /* empty list */
 
       models.forEach((fields) => {
-        this.add(new this.model(fields));
+        this.add(new this.model(fields)); // always initialize a model like that
       });
 
       this.notifyObservers({event: "fetched", models:models});

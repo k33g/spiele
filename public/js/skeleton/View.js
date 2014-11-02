@@ -3,12 +3,10 @@ import $q from './selector';
 
 class View extends Observable {
 
-  constructor (options={}, observers = []) {
+  constructor (options={selector: "", observers: []}) {
     Object.assign(this, options);
-
-    if (this.selector) { this.element = $q(this.selector); }
-
-    super(observers);
+    this.element = $q(this.selector);
+    super(this.observers);
   }
 
   html (code) {
