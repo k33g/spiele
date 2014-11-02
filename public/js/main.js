@@ -3,6 +3,7 @@ import Router from 'js/skeleton/Router';
 import Observer from 'js/skeleton/Observer';
 import Part from 'js/skeleton/Part';
 
+let sharedServices = {};
 
 let router = new Router();
 router
@@ -10,6 +11,16 @@ router
   .add("hello", (args) => { console.log(args); });
 
 router.listen();
+
+let horizontalMenuPart = new Part({
+  url:"js/app/parts/horizontal-menu/horizontal-menu",
+  selector:"horizontal-menu"
+});
+
+horizontalMenuPart.load({
+  router: router,
+  sharedServices: sharedServices
+});
 
 let helloPart = new Part({url:"js/app/parts/hello/hello", selector:"hello"});
 let headerAppPart = new Part({url:"js/app/parts/header-app/header-app", selector:"header-app"});
@@ -34,7 +45,10 @@ headerAppPart.load({message:"Header"}).then(() => {
 });
 
 /* Router injection */
-humansAppPart.load({router: router}).then(() => {
+humansAppPart.load({
+  router: router,
+  sharedServices: sharedServices
+}).then(() => {
   console.log("humansAppPart loaded")
 });
 

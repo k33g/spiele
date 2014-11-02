@@ -38,6 +38,14 @@ export default (options) =>  {
       }
     })
 
+  options.sharedServices.humans = {
+    toggleUX: () => {
+      humansList.toggle();
+      humanForm.toggle();
+      message.toggle();
+    }
+  };
+
 
 };
 

@@ -12,7 +12,7 @@ class Part extends Observable { // extends View instead ?
     super(this.observers);
   }
 
-  load (options) {
+  load (options = {router:{}, sharedServices:{}}) {
     return new Request(this.url+".html").getText().then((data) => {
       this.element.innerHTML = data;
       this.notifyObservers({event: "rendered", part:this});
