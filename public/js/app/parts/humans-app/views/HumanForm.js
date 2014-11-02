@@ -72,7 +72,6 @@ class HumanForm extends View {
         this.lastName.value = "";
         this.history.value = "";
 
-
         this.notifyObservers({event:"saved"});
 
       })

@@ -1,9 +1,6 @@
 {
-  "name": "es6-project",
+  "name": "skeleton",
   "version": "0.0.0",
   "dependencies": {
-    "backbone": "~1.1.2",
-    "jquery": "~2.1.1",
-    "mustache": "~0.8.2"
   }
 }
